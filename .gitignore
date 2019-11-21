@@ -1,0 +1,9 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/parking-lot/.vs/parking-lot/v16
+/parking-lot/parking-lot/obj
+/parking-lot/parking-lot-test/obj
+/parking-lot/parking-lot/bin/Debug/netcoreapp2.2
+/parking-lot/parking-lot-test/bin/Debug/netcoreapp2.2
