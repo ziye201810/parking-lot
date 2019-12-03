@@ -20,11 +20,19 @@ namespace parking_lot
         {
             foreach (var parkingLot in _parkingLots)
             {
-                var ticket = parkingLot.Park(car);
-                if (ticket != null)
+                try
                 {
-                    return ticket;
+                    var ticket = parkingLot.Park(car);
+                    if (ticket != null)
+                    {
+                        return ticket;
+                    }
                 }
+                catch (Exception e)
+                {
+
+                }
+
             }
             throw new Exception("No available parking spot");
         }
