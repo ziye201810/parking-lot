@@ -6,12 +6,19 @@ namespace parking_lot
     public class ParkingLot
     {
         private Dictionary<object, Car> ticketToCars;
+        private int ParkingLotSize;
 
         public ParkingLot()
         {
+            ParkingLotSize = 20;
             ticketToCars = new Dictionary<object, Car>();
         }
-        
+
+        public int GetAvailableSpotNumber()
+        {
+            return ParkingLotSize - ticketToCars.Count;
+        }
+
         public object Park(Car car)
         {
             var ticket = new object();
@@ -34,13 +41,13 @@ namespace parking_lot
                 var car = ticketToCars[ticket];
                 ticketToCars.Remove(ticket);
                 return car;
-                
-                
+
+
             }
             else
             {
                 throw new Exception("Invalid ticket!");
-                
+
             }
 
         }
