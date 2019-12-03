@@ -41,15 +41,9 @@ namespace parking_lot
                 var car = ticketToCars[ticket];
                 ticketToCars.Remove(ticket);
                 return car;
-
-
-            }
-            else
-            {
-                throw new Exception("Invalid ticket!");
-
             }
 
+            throw new Exception("Invalid ticket!");
         }
     }
 }

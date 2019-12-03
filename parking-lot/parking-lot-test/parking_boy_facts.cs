@@ -1,10 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Globalization;
-using System.Runtime.InteropServices;
-using System.Transactions;
-using Moq;
 using parking_lot;
 using Xunit;
 
@@ -126,5 +121,66 @@ namespace parking_lot_test
 
             Assert.Throws<Exception>(() => parkingBoy.Park(car));
         }
+
+        #region GetCar
+        [Fact]
+        public void should_get_the_right_car_when_parking_boy_get_car_given_a_valid_ticket_and_a_parking_lot()
+        {
+            var parkinglot=new ParkingLot();
+            var boy=new ParkingBoy(new List<ParkingLot>{parkinglot});
+            var car=new Car();
+            var ticket = boy.Park(car);
+
+
+            var gettedCar=boy.GetCar(ticket);
+            
+            Assert.NotNull(gettedCar);
+            Assert.Equal(car,gettedCar);
+        }
+
+
+        [Fact]
+        public void should_throw_exception_when_parking_boy_get_car_given_an_invalid_ticket_and_a_parking_lot()
+        {
+            var parkinglot = new ParkingLot();
+            var boy = new ParkingBoy(new List<ParkingLot> {parkinglot});
+            var car = new Car();
+            boy.Park(car);
+
+            Assert.Throws<Exception>(() => boy.GetCar(new object()));
+        }
+
+        [Fact]
+        public void should_get_the_right_car_when_parking_boy_get_car_given_a_valid_ticket_and_two_parking_lot_and_parking_lot_A_is_full()
+        {
+            var parkinglotA=new ParkingLot();
+            var parkinglotB=new ParkingLot();
+            var boy=new ParkingBoy(new List<ParkingLot>{parkinglotA,parkinglotB});
+            for (int i = 0; i < 20; i++)
+            {
+                parkinglotA.Park(new Car());
+            }
+            var car=new Car();
+            var ticket = boy.Park(car);
+            
+            var gettedCar=boy.GetCar(ticket);
+            
+            Assert.NotNull(gettedCar);
+            Assert.Equal(car,gettedCar);
+        }
+
+        [Fact]
+        public void should_throw_exception_when_parking_boy_get_car_given_a_valid_ticket_and_two_parking_lot_and_parking_lot_A_is_managed_by_parking_boy()
+        {
+            var parkinglotA=new ParkingLot();
+            var parkinglotB=new ParkingLot();
+            var boy=new ParkingBoy(new List<ParkingLot>{parkinglotA});
+            var car=new Car();
+            var ticket = parkinglotB.Park(car);
+
+            Assert.Throws<Exception>(() => boy.GetCar(ticket));
+        }
+
+        #endregion
     }
 }
