@@ -20,16 +20,10 @@ namespace parking_lot
         {
             foreach (var parkingLot in _parkingLots)
             {
-                try
+                if (parkingLot.GetAvailableSpotNumber() > 0)
                 {
                     var ticket = parkingLot.Park(car);
-                    if (ticket != null)
-                    {
-                        return ticket;
-                    }
-                }
-                catch (Exception e)
-                {
+                    return ticket;
                 }
             }
 
@@ -39,26 +33,18 @@ namespace parking_lot
         public Car GetCar(object ticket)
         {
             Car result = null;
-            _parkingLots.ForEach(l =>
+            _parkingLots.(l =>
             {
-                try
+                if (l.Exist(ticket))
                 {
-                    var car = l.GetCar(ticket);
-                    if (car != null)
-                    {
-                        result = car as Car;
-                    }
+                    result = l.GetCar(ticket);
                 }
-                catch (Exception e)
-                {
-                    Console.WriteLine(e);
-                }
-              
             });
             if (result == null)
             {
-                throw new Exception("Invalid ticket!");
+                throw new NotFoundException("Invalid ticket!");
             }
+
             return result;
         }
     }

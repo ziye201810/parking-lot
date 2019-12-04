@@ -9,12 +9,11 @@ namespace parking_lot_test
     {
         private readonly Car _car;
         private ParkingLot _parkingLot;
-        private const int parkingLotSize = 20;
-        
+        private const int ParkingLotSize = 20;
         public parking_lot_facts()
         {
             _car = new Car();
-            _parkingLot = new ParkingLot();
+            _parkingLot = new ParkingLot(ParkingLotSize);
         }
         
         [Fact]
@@ -60,7 +59,7 @@ namespace parking_lot_test
         [Fact]
         public void should_not_park_car_when_parkinglot_is_full()
         {
-            for (int i = 0; i < parkingLotSize; i++)
+            for (int i = 0; i < ParkingLotSize; i++)
             {
                 _parkingLot.Park(new Car());
             }
