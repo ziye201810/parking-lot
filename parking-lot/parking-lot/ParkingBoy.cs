@@ -7,7 +7,7 @@ namespace parking_lot
     {
         private List<ParkingLot> _parkingLots;
 
-        private ParkingBoy()
+        protected ParkingBoy()
         {
         }
 
@@ -16,7 +16,7 @@ namespace parking_lot
             this._parkingLots = parkingLots;
         }
 
-        public object Park(Car car)
+        public virtual object Park(Car car)
         {
             foreach (var parkingLot in _parkingLots)
             {
@@ -33,7 +33,7 @@ namespace parking_lot
         public Car GetCar(object ticket)
         {
             Car result = null;
-            _parkingLots.(l =>
+            _parkingLots.ForEach(l =>
             {
                 if (l.Exist(ticket))
                 {
