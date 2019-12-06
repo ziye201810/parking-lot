@@ -36,23 +36,5 @@ namespace parking_lot
 
             throw new Exception("No available parking spot");
         }
-
-        public Car GetCar(object ticket)
-        {
-            Car result = null;
-            _parkingLots.ForEach(l =>
-            {
-                if (l.Exist(ticket))
-                {
-                    result = l.GetCar(ticket);
-                }
-            });
-            if (result == null)
-            {
-                throw new NotFoundException("Invalid ticket!");
-            }
-
-            return result;
-        }
     }
 }
