@@ -5,7 +5,7 @@ using Xunit;
 
 namespace parking_lot_test
 {
-    public class parking_bot_facts
+    public class parkingBotFacts
     {
          private int _capacity = 20;
 
@@ -13,7 +13,7 @@ namespace parking_lot_test
         public void should_park_a_car_into_a_parking_lot_which_has_space_and_get_a_ticket()
         {
             var list = new List<ParkingLot> {new ParkingLot(_capacity)};
-            var parkingBoy = new ParkingBot(list);
+            var parkingBoy = new ParkingBotOld(list);
 
             var ticket = parkingBoy.Park(new Car());
 
@@ -29,7 +29,7 @@ namespace parking_lot_test
                 parkingLot.Park(new Car());
             }
             var list = new List<ParkingLot> { parkingLot };
-            var parkingBoy = new ParkingBot(list);
+            var parkingBoy = new ParkingBotOld(list);
 
 
             Assert.Throws<Exception>(() => parkingBoy.Park(new Car()));
@@ -44,7 +44,7 @@ namespace parking_lot_test
             var preNumOfCarB = parkingLotB.GetAvailableSpotNumber();
             var car = new Car();
             var list = new List<ParkingLot>(){parkingLotA, parkingLotB};
-            var parkingBoy = new ParkingBot(list);
+            var parkingBoy = new ParkingBotOld(list);
 
             parkingBoy.Park(car);
 
@@ -64,7 +64,7 @@ namespace parking_lot_test
             var preNumOfCarB = parkingLotB.GetAvailableSpotNumber();
             var car = new Car();
             var list = new List<ParkingLot>(){parkingLotA, parkingLotB};
-            var parkingBoy = new ParkingBot(list);
+            var parkingBoy = new ParkingBotOld(list);
 
             parkingBoy.Park(car);
 
@@ -84,7 +84,7 @@ namespace parking_lot_test
             var preNumOfCarB = parkingLotB.GetAvailableSpotNumber();
             var car = new Car();
             var list = new List<ParkingLot>(){parkingLotA, parkingLotB};
-            var parkingBoy = new ParkingBot(list);
+            var parkingBoy = new ParkingBotOld(list);
 
             parkingBoy.Park(car);
 
@@ -103,7 +103,7 @@ namespace parking_lot_test
             }
             var car = new Car();
             var list = new List<ParkingLot>(){parkingLotA, parkingLotB};
-            var parkingBoy = new ParkingBot(list);
+            var parkingBoy = new ParkingBotOld(list);
 
             Assert.Throws<Exception>(() => parkingBoy.Park(car));
         }

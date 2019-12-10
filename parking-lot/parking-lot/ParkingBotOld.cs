@@ -3,9 +3,9 @@ using System.Collections.Generic;
 
 namespace parking_lot
 {
-    public class ParkingBot:ParkingBoy
+    public class ParkingBotOld:ParkingBoy
     {
-        public ParkingBot(List<ParkingLot> list)
+        public ParkingBotOld(List<ParkingLot> list)
         {
             throw new NotImplementedException();
         }
